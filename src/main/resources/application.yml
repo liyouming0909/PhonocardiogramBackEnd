@@ -1,27 +1,20 @@
+server:
+  port: 8080
+
 spring:
   datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
     username: root
-    password: 123456
-    url: jdbc:mysql://localhost:3306/vhr?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-  rabbitmq:
-    username: guest
-    password: guest
-    host: 127.0.0.1
-    publisher-confirms: true
-    publisher-returns: true
-  redis:
-    host: 127.0.0.1
-    database: 0
-    port: 6379
-    password:
-  cache:
-    cache-names: menus_cache
+    password: 7981375
+    url: jdbc:mysql://localhost:3306/phonocardiogram?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
-server:
-  port: 8081
-  compression:
-    enabled: true
-fastdfs:
-  nginx:
-    host: http://192.168.91.128/
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: org.phonocardiogram.entity
+
+#showSql
+logging:
+  level:
+    org:
+      phonocardiogram:
+        dao : debug
