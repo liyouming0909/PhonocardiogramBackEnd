@@ -1,20 +1,33 @@
 server:
-  port: 8080
+  port: 80
+  servlet:
+    context-path: /api
 
 spring:
   datasource:
     username: root
-    password: 7981375
-    url: jdbc:mysql://localhost:3306/phonocardiogram?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    password: root
+    url: jdbc:mysql://112.124.109.26:3306/DB_EPCG_PUSH?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-mybatis:
-  mapper-locations: classpath:mapper/*Mapper.xml
-  type-aliases-package: org.phonocardiogram.entity
+
+#spring:
+#  datasource:
+#    username: root
+#    password: 7981375
+#    url: jdbc:mysql://localhost:3306/phonocardiogram?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    schema: classpath:schema.sql
+#    data: classpath:data.sql
+#    initialization-mode：: never
+
+#mybatis:
+#  mapper-locations: classpath:mapper/*Mapper.xml
+#  type-aliases-package: org.phonocardiogram.entity
 
 #showSql
 logging:
   level:
-    org:
-      phonocardiogram:
-        dao : debug
+    com:
+      shanren:
+        epcg: debug
