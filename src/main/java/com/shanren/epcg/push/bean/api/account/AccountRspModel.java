@@ -24,7 +24,7 @@ public class AccountRspModel {
     private String token;
 
     // 标示是否已经绑定到了设备PushId
-    private boolean isBind;
+    private String isBind;
 
     public AccountRspModel(User user) {
         // 默认无绑定
@@ -35,6 +35,6 @@ public class AccountRspModel {
         this.user = new UserCard(user);
         this.account = user.getName();
         this.token = user.getToken();
-        this.isBind = isBind;
+        this.isBind = String.valueOf(isBind);
     }
 }

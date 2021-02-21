@@ -64,8 +64,8 @@ public class RecordCard {
         this.bodyStatus = record.getBodyStatus();
         this.selfFeeling = record.getSelfFeeling();
         this.otherInfo = record.getOtherInfo();
-        this.userId = record.getUser().getId();
-        this.patientId = record.getPatient().getId();
+        this.userId = record.getUserId();
+        this.patientId = record.getPatientId();
         this.modifyAt = record.getUpdateAt();
     }
 }

@@ -80,10 +80,6 @@ public class Record implements Serializable {
     @TableField("updateAt")
     private LocalDateTime updateAt = LocalDateTime.now();
 
-    private User user;
-
-    private Patient patient;
-
     public Record(){
 
     }
@@ -102,5 +98,7 @@ public class Record implements Serializable {
         this.bodyStatus = model.getBodyStatus();
         this.selfFeeling = model.getSelfFeeling();
         this.otherInfo = model.getOtherInfo();
+        this.userId = model.getUserId();
+        this.patientId = model.getPatientId();
     }
 }

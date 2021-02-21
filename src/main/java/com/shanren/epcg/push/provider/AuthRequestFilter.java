@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.shanren.epcg.push.bean.api.base.ResponseModel;
 import com.shanren.epcg.push.bean.db.User;
 import com.shanren.epcg.push.service.AccountService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,7 @@ import java.io.IOException;
  * @author qiujuer Email:qiujuer@live.cn
  * @version 1.0.0
  */
+@Slf4j
 @Component
 public class AuthRequestFilter implements Filter {
     @Autowired
@@ -30,6 +32,7 @@ public class AuthRequestFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         // 检查是否是登录注册接口
         String relationPath = httpServletRequest.getRequestURI();
+        log.info("访问路径:{}",relationPath);
         if (relationPath.startsWith("/api/account/login")
                 || relationPath.startsWith("/api/account/register")) {
             // 直接走正常逻辑，不做拦截

@@ -88,18 +88,8 @@ public class AccountController {
     // 从请求头中获取token字段
     // pushId从url地址中获取
     @PostMapping("/account/bind/{pushId}")
-    public ResponseModel<AccountRspModel> bind(@RequestHeader("token") String token,
-                                               @PathVariable("pushId") String pushId) {
-        if (StringUtils.isEmpty(token) ||
-                StringUtils.isEmpty(pushId)) {
-            // 返回参数异常
-            return ResponseModel.buildParameterError();
-        }
-
-        // 拿到自己的个人信息
-        User user = accountService.findByToken(token);
-        //User self = getSelf();
-        return accountService.bindPushId(user,pushId);
+    public ResponseModel<AccountRspModel> bind(@PathVariable("pushId") String pushId, @RequestAttribute("user") User self) {
+        return accountService.bindPushId(self,pushId);
     }
 
 }

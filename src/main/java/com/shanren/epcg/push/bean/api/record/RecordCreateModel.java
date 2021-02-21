@@ -40,12 +40,18 @@ public class RecordCreateModel {
 
     private String otherInfo;
 
+    private String userId;
+
+    private String patientId;
+
     public static boolean check(RecordCreateModel model) {
         return model != null
                 && StringUtils.isNotEmpty(model.startTime)
                 && StringUtils.isNotEmpty(model.endTime)
                 && StringUtils.isNotEmpty(model.testType)
-                && StringUtils.isNotEmpty(model.area);
+                && StringUtils.isNotEmpty(model.area)
+                && StringUtils.isNotEmpty(model.userId)
+                && StringUtils.isNotEmpty(model.patientId);
 
     }
 }

@@ -19,9 +19,6 @@ import java.util.List;
 @Mapper
 public interface PatientMapper extends BaseMapper<Patient> {
 
-    @Select("select p.* from TB_PATIENT p ,TB_Record r where p.id=r.patientId and r.userId= #{id}")
+    @Select("select p.* from TB_PATIENT p ,TB_RECORD r where p.id = r.patientId and r.userId= #{id}")
     List<Patient> contacts(String id);
-
-    @Select("select name from TB_PATIENT where id = #{patientId}")
-    Patient selectByPrimaryKey(String patientId);
 }
