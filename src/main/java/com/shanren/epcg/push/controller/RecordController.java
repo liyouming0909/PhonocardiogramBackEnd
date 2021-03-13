@@ -25,7 +25,7 @@ public class RecordController {
 
     // 指定请求与返回的相应体为JSON
     @PostMapping("/record/createRecord")
-    public ResponseModel<RecordCard> createRecord(@RequestBody RecordCreateModel model){
+    public ResponseModel<RecordCard> createRecord(@RequestBody RecordCreateModel model) {
         if (!RecordCreateModel.check(model)) {
             return ResponseModel.buildParameterError();  // 返回参数异常
         }
@@ -40,8 +40,14 @@ public class RecordController {
      * @return 记录信息列表
      */
     @GetMapping("/record/list/{date}")
-    public ResponseModel<List<RecordCard>> list(@PathVariable(value = "date") String dateStr,@RequestAttribute("user") User self) {
-        return recordService.list(self,dateStr);
+    public ResponseModel<List<RecordCard>> list(@PathVariable(value = "date") String dateStr, @RequestAttribute("user") User self) {
+        return recordService.list(self, dateStr);
+    }
+
+
+    @DeleteMapping("/record/delete/{recordId}")
+    public ResponseModel<RecordCard> deleteRecord(@PathVariable(value = "recordId") String recordId) {
+        return recordService.delete(recordId);
     }
 }
 

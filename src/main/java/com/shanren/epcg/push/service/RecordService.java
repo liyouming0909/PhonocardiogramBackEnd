@@ -18,6 +18,8 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 import static com.shanren.epcg.push.bean.api.base.ResponseModel.ERROR_CREATE_RECORD;
+import static com.shanren.epcg.push.bean.api.base.ResponseModel.ERROR_DELETE_RECORD;
+
 
 @Component
 public class RecordService {
@@ -31,9 +33,9 @@ public class RecordService {
 
         Record record = new Record(model);
         // 开始注册逻辑
-        recordMapper.insert(record);
+        int i = recordMapper.insert(record);
 
-        if (record != null) {
+        if (record != null && i == 1) {
             // 返回当前的账户
             return ResponseModel.buildOk(new RecordCard(record));
         } else {
@@ -69,6 +71,15 @@ public class RecordService {
                 .filter(record -> finalDateTime == null || record.getUpdateAt().isAfter(finalDateTime)).map(RecordCard::new).collect(Collectors.toList());
 
         return ResponseModel.buildOk(recordCards);
+    }
+
+    public ResponseModel<RecordCard> delete(String recordId) {
+        int i = recordMapper.deleteById(recordId);
+        if(i != 1){
+            return ResponseModel.buildCreateError(ERROR_DELETE_RECORD);
+        }
+
+        return ResponseModel.buildOk();
     }
 }
 

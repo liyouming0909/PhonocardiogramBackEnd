@@ -32,8 +32,13 @@ public class ResponseModel<M> implements Serializable {
 
     //创建患者失败
     public static final int ERROR_CREATE_PATIENT = 3004;
-    //创建记录失败
+    //删除患者失败
+    public static final int ERROR_DELETE_PATIENT = 3005;
+    
+    //创建记录记录失败
     public static final int ERROR_CREATE_RECORD = 3005;
+    //删除记录失败
+    public static final int ERROR_DELETE_RECORD = 3006;
     // 请求参数错误
     public static final int ERROR_PARAMETERS = 4001;
     // 请求参数错误-已存在账户

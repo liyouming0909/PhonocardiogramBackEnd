@@ -8,12 +8,12 @@ import com.shanren.epcg.push.bean.db.Patient;
 import com.shanren.epcg.push.bean.db.User;
 import com.shanren.epcg.push.mapper.PatientMapper;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import static com.shanren.epcg.push.bean.api.base.ResponseModel.ERROR_DELETE_PATIENT;
 
 /**
  * @Title: PatientService
@@ -95,5 +95,14 @@ public class PatientService {
         List<PatientCard> patientCards = searchPatients.stream().map(patient -> new PatientCard(patient)).collect(Collectors.toList());
 
         return ResponseModel.buildOk(patientCards);
+    }
+
+    public ResponseModel<PatientCard> delete(String patientId) {
+        int i = patientMapper.deleteById(patientId);
+        if(i != 1){
+            return ResponseModel.buildCreateError(ERROR_DELETE_PATIENT);
+        }
+
+        return ResponseModel.buildOk();
     }
 }
